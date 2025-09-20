@@ -1,0 +1,521 @@
+:root {
+    scroll-behavior: smooth;
+    --bg-color: #F9FAFB;
+  --text-color: #1F2937;
+  --primary-color: #2563EB;
+  --accent-color: #E5E7EB;
+}
+
+
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    z-index: 9999;
+}
+
+.loader {
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    background-color: #FF5C35;
+    animation: spin 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+}
+
+@keyframes spin {
+
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    50% {
+        transform: scale(0.5) rotate(180deg);
+    }
+}
+
+.bold-text {
+    font-weight: bold;
+    color: black;
+}
+
+*,
+html {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+#loader.hidden {
+    display: none;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+
+}
+
+
+header {
+    text-align: center;
+    background-image: url('https://eu-central.storage.cloudconvert.com/tasks/f85460b9-2c0d-4c8a-8ae3-f0a6feea20eb/VID20230809055559.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cloudconvert-production%2F20240926%2Ffra%2Fs3%2Faws4_request&X-Amz-Date=20240926T081131Z&X-Amz-Expires=86400&X-Amz-Signature=81b5f4e23201033addb955fa026a5d04334ec16d2cf94114a56e39e95228f811&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22VID20230809055559.gif%22&response-content-type=image%2Fgif&x-id=GetObject');
+    /* Ganti 'your-image.jpg' dengan nama file gambarmu */
+    background-size: cover;
+    background-position: center;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   background-color: #1f2937,white;
+    
+
+}
+
+
+
+nav {
+
+    display: flex;
+    justify-content: space-between;
+    color:#191919;
+
+
+}
+
+nav div img {
+    width: 50px;
+    border-radius: 5rem;
+    color: #000000;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+nav li {
+    display: inline-block;
+    margin: 10px;
+}
+
+.hero {
+    color: rgb(0, 0, 0);
+
+}
+
+h2 {
+    padding: 13px;
+
+}
+
+h1 {
+    font-size: 48px;
+}
+
+p {
+    font-size: 24px;
+}
+
+button {
+    background-color: orange;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: #fff;
+    text-align: justify;
+    transition: top 0.3s;
+}
+
+nav.hidden {
+    top: -100px;
+    /* Adjust this based on your navbar height */
+}
+
+.nav ul li {
+    padding: 10px 30px;
+    position: relative;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #191919;
+    font-weight: 600;
+    padding: 8px 0;
+    transition: all;
+    transition-duration: 300ms;
+    border-bottom: 1px solid rgba(255, 68, 0, 0);
+    font-size: 19px;
+
+}
+
+nav ul li a:hover {
+    color: orange;
+    border-bottom: 1px solid orange;
+}
+
+.menu-icon {
+    font-size: 40px;
+    display: none;
+}
+
+main {
+    padding-top: 7rem;
+}
+
+
+.dropdown-menu {
+    display: none;
+    /* Awalnya disembunyikan */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgb(190, 190, 190);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-menu ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.dropdown-menu ul li {
+    width: 150px;
+    padding: 10px;
+    text-align: left;
+}
+
+.dropdown-menu ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 8px 16px;
+    text-align: center;
+}
+
+.dropdown-menu ul li a:hover {
+    background-color: #f1f1f1;
+    color: #ff5c35;
+}
+
+.dropdown-menu p {
+    font-size: 12px;
+    text-align: center;
+}
+
+.dropdown-menu img {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+/* Menampilkan dropdown saat hover pada desktop */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Untuk mobile, menampilkan dropdown pada klik */
+@media (max-width: 768px) {
+    nav {
+        flex-wrap: wrap;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        background-color: #fff;
+        transition: top 0.3s;
+    }
+
+    nav li.hidden {
+        top: -100px;
+        /* Adjust this based on your navbar height */
+    }
+
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    nav ul li:last-of-type {
+        padding-bottom: 8px;
+    }
+
+    nav ul.hidden {
+        display: none;
+        transition: top 0.3s;
+    }
+
+    .menu-icon {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    .dropdown-menu {
+        padding: 10px;
+        position: static;
+        box-shadow: none;
+        background-color: transparent;
+        display: none;
+    }
+
+    .dropdown-menu.show {
+        display: block;
+        /* Show when toggled */
+    }
+
+    .dropdown-menu ul li {
+        padding: 10px;
+        justify-content: center;
+    }
+
+    .dropdown-menu img {
+        display: flexbox;
+        justify-content: center;
+        align-items: center;
+        height: 400px;
+        max-width: 100%;
+        height: auto;
+    }
+
+}
+
+
+/* Untuk mobile, dropdown selalu ditampilkan */
+
+
+
+
+
+.container a {
+    text-decoration: none;
+}
+
+.judul-projek h1 {
+    width: 100%;
+    text-align: center;
+    color: #fff;
+}
+
+.judul-projek {
+    background-color: brown;
+}
+
+.text-section {
+    width: 50%;
+}
+
+.image-section img {
+    width: 100%;
+    height: auto;
+    border-radius: 10%;
+    float: right;
+    margin-left: 10px;
+}
+
+.slider-container {
+    max-width: 900px;
+    margin: 2em auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+
+}
+
+.slide p {
+    text-align: center;
+    color: #fff;
+}
+
+.slide img {
+    width: 100%;
+    border-radius: 10%;
+    padding: 25px;
+    padding-top: 0%;
+    float: right;
+}
+
+.navigation {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.navigation button {
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 50%;
+}
+
+.navigation button:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+
+
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
+
+    .text-section,
+    .image-section {
+        width: 100%;
+    }
+
+}
+
+.container2 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    perspective: 1000px;
+}
+
+.package {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+.package:hover {
+    transform: rotateY(10deg) rotateX(10deg);
+}
+
+.package img {
+    width: 100%;
+    height: auto;
+}
+
+.package-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.package h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.package p {
+    font-size: 16px;
+    color: #666;
+}
+
+.package button {
+    background-color: #ff9900;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .container2 {
+        flex-direction: column;
+    }
+
+    .package {
+        margin-bottom: 20px;
+    }
+}
+
+.contak {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(195, 145, 46, 0.991);
+    color: white;
+}
+
+.text {
+    width: 50%;
+}
+
+.image-sectiona img {
+    width: 100%;
+    height: auto;
+    border-radius: 10%;
+
+    float: right;
+    margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+    .contak {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .text,
+    .image-section {
+        width: 100%;
+    }
+}

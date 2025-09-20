@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio | Rizkyan Dwi Fahrizah</title>
+    
+    <link rel="shortcut icon" href="_488bf90c-b1a3-46a8-9da7-cfbd6e91c783.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+</head>
+<style>
+  :root {
+    --bg-color: #0f172a; /* Warna background lebih gelap dan premium */
+    --section-bg: #1e293b;
+    --text-color: #e2e8f0; /* Teks tidak terlalu putih, lebih nyaman di mata */
+    --primary-color: #38bdf8; /* Biru cerah sebagai aksen utama */
+    --accent-color: #60a5fa;
+    --btn-hover-color: #0ea5e9;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --link-color: #93c5fd;
+    --link-hover-color: #bfdbfe;
+    --border-color: #334155;
+  }
+
+  /* === GENERAL STYLING === */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+  }
+
+  h1, h2, h3 {
+    font-weight: 700;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  h1 { font-size: 2.8rem; }
+  h2 { font-size: 2.2rem; margin-bottom: 2.5rem; }
+  
+  section {
+    padding: 80px 5%;
+    overflow: hidden;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* === LOADER === */
+  #loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s, visibility 0.5s;
+  }
+  #loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+  }
+  .loader {
+      border: 6px solid var(--section-bg);
+      border-top: 6px solid var(--primary-color);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+  }
+  @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  }
+
+
+  /* === HEADER & NAVBAR === */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.4s ease, backdrop-filter 0.4s ease, transform 0.4s ease;
+  }
+
+  header.scrolled {
+      background-color: rgba(15, 23, 42, 0.85); /* background blur saat scroll */
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px var(--shadow-color);
+  }
+
+  header.hidden {
+      transform: translateY(-100%);
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    height: 70px;
+  }
+
+  .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+  }
+  .logo span { color: var(--primary-color); }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+  }
+
+  .nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    transition: color 0.3s;
+  }
+
+  .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--primary-color);
+      transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover, .dropdown:hover > a {
+      color: var(--primary-color);
+  }
+  .nav-links a:hover::after {
+      width: 100%;
+  }
+
+  .dropdown { position: relative; }
+  .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 150%;
+      left: -20px;
+      background: var(--section-bg);
+      border-radius: 8px;
+      box-shadow: 0 8px 20px var(--shadow-color);
+      padding: 10px 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+  }
+  .dropdown:hover .dropdown-menu {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+  }
+  .dropdown-menu ul { list-style: none; }
+  .dropdown-menu a {
+      display: block;
+      padding: 12px 25px;
+      white-space: nowrap;
+  }
+  .dropdown-menu a p {
+      font-size: 0.8rem;
+      color: var(--accent-color);
+      margin: 2px 0 0;
+      font-weight: 400;
+  }
+  .dropdown-menu a:hover {
+      background-color: var(--primary-color);
+      color: #fff;
+  }
+  .dropdown-menu a:hover p {
+      color: #fff;
+  }
+  
+  /* Mobile Menu */
+  .menu-icon {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 1002;
+  }
+
+  /* === HERO SECTION === */
+  .hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0 5%;
+    text-align: center;
+    position: relative;
+    background: linear-gradient(135deg, var(--bg-color) 0%, #162238 100%);
+  }
+  
+  .hero-content {
+      max-width: 800px;
+  }
+
+  .typewriter {
+    font-family: 'Courier New', monospace;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 4px solid var(--primary-color);
+    animation: blink-caret 0.8s step-end infinite;
+  }
+
+  .hero p.subtitle {
+    font-size: 1.3rem;
+    color: var(--text-color);
+    margin-bottom: 2.5rem;
+    letter-spacing: 1px;
+  }
+
+  .btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  }
+  .btn:hover {
+    background-color: var(--btn-hover-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--primary-color) }
+  }
+
+  /* === ABOUT SECTION === */
+  #About {
+    background: var(--section-bg);
+  }
+  .about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+  }
+  .about-image {
+    flex: 1;
+    max-width: 350px;
+  }
+  .about-image img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    transition: transform 0.4s;
+  }
+  .about-image img:hover {
+      transform: scale(1.05);
+  }
+  .about-text {
+    flex: 1.5;
+    max-width: 600px;
+  }
+  .about-text h2 {
+      text-align: left;
+  }
+  .about-text p {
+      margin-bottom: 1rem;
+  }
+  .about-text a {
+      color: var(--link-color);
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s;
+  }
+  .about-text a:hover {
+      color: var(--link-hover-color);
+      text-decoration: underline;
+  }
+  .read-more-mobile {
+      display: none; /* Controlled by JS */
+  }
+
+  /* === PROJECTS SECTION === */
+  .slider-wrapper {
+      position: relative;
+  }
+  .slider-container {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 20px; /* space for scrollbar */
+  }
+   .slider-container::-webkit-scrollbar { height: 8px; }
+   .slider-container::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 10px; }
+   .slider-container::-webkit-scrollbar-track { background: var(--border-color); border-radius: 10px;}
+
+  .slide {
+    flex: 0 0 320px; /* Fixed width */
+    background: var(--section-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px var(--shadow-color);
+    scroll-snap-align: start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .slide:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+  }
+
+  .slide img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+  }
+  .slide-content {
+      padding: 1.5rem;
+  }
+  .slide-content h3 {
+      font-size: 1.2rem;
+      color: #fff;
+      text-align: left;
+      margin-bottom: 0.5rem;
+  }
+  .slide-content p {
+      font-size: 0.9rem;
+      color: var(--text-color);
+      margin-bottom: 1.5rem;
+  }
+  .slide-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+  }
+  .slide-buttons button {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--primary-color);
+    background-color: transparent;
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .slide-buttons button:hover {
+      background-color: var(--primary-color);
+      color: #fff;
+  }
+
+  /* === CONTACT SECTION === */
+  #kontak {
+    background: var(--section-bg);
+  }
+  .kontak-container {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+  }
+  .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+  }
+  .contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+    font-size: 1rem;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .contact-form input:focus, .contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
+  }
+  .btn-kirim {
+      background-color: var(--primary-color);
+      color: #fff;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.1em;
+      transition: all 0.3s ease;
+  }
+  .btn-kirim:hover {
+      background-color: var(--btn-hover-color);
+      transform: scale(1.02);
+  }
+
+  .sosial {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .sosial a {
+    color: var(--accent-color);
+    font-size: 2rem;
+    transition: color 0.3s, transform 0.3s;
+  }
+  .sosial a:hover {
+      color: var(--primary-color);
+      transform: translateY(-5px);
+  }
+
+  /* === FOOTER === */
+  footer {
+    background-color: #0c1221;
+    text-align: center;
+    padding: 2rem 5%;
+    border-top: 1px solid var(--border-color);
+  }
+  .footer-socials a {
+      color: var(--text-color);
+      margin: 0 12px;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+  }
+  .footer-socials a:hover {
+      color: var(--primary-color);
+  }
+  footer p {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--accent-color);
+  }
+
+
+  /* === RESPONSIVE DESIGN === */
+  @media (max-width: 768px) {
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    section { padding: 60px 5%; }
+    
+    /* Mobile Navbar */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Start off-screen */
+        width: 70%;
+        height: 100vh;
+        background-color: var(--section-bg);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        box-shadow: -10px 0 30px var(--shadow-color);
+    }
+    .nav-links.active {
+        right: 0;
+    }
+    .menu-icon {
+        display: block;
+    }
+    .dropdown-menu {
+        position: static;
+        display: none; /* Hide by default */
+        background: transparent;
+        box-shadow: none;
+        padding: 0;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        width: 100%;
+        text-align: center;
+    }
+    .dropdown.active .dropdown-menu {
+        display: block; /* Show on click */
+        margin-top: 1rem;
+    }
+    .dropdown-menu ul {
+        padding: 0;
+    }
+     .dropdown-menu a {
+        padding: 10px 15px;
+    }
+
+    /* Hero */
+    .typewriter {
+        white-space: normal; /* Allow text to wrap */
+        border-right: none;
+        animation: none;
+    }
+
+    /* About */
+    .about-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .about-text h2 {
+        text-align: center;
+    }
+    #about-full { display: none; }
+    .read-more-mobile {
+        display: inline-block;
+        margin-top: 1rem;
+        background: var(--primary-color);
+        border: none;
+        color: #fff;
+        padding: 8px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    
+    /* Projects */
+    .slide {
+        flex: 0 0 280px;
+    }
+  }
+
+  /* Reveal on Scroll Animation */
+  .reveal {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+  }
+  
+</style>
+<body>
+    <div id="loader">
+        <div class="loader"></div>
+    </div>
+
+    <header id="header">
+        <nav class="container">
+            <a href="http://server/" class="logo">Rizkyan<span>.</span></a>
+            <ul class="nav-links" id="menu-list">
+                <li><a href="http://server/">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li class="dropdown">
+                    <a href="#Projeks">Projek <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-menu">
+                        <ul>
+                            <li><a href="./Website resource/web1/index.html">Projek 1<p>Website Cover Lagu</p></a></li>
+                            <li><a href="./Website resource/tugas membuat web sekolah smp/index.php">Projek 2<p>Website Sekolah SMP</p></a></li>
+                            <li><a href="./Website resource/website_shoping/index.html">Projek 3<p>Website Toko Online</p></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#kontak">Contact</a></li>
+                <li><a href="./portofolio/portofolio.html">Dokumentasi</a></li>
+            </ul>
+            <div id="menu-icon" class="menu-icon">
+                <i class="ph ph-list"></i>
+            </div>
+        </nav>
+    </header>
+
+    <section id="Home" class="hero">
+        <div class="hero-content">
+            <h1 class="typewriter" id="typing">Rizkyan Dwi Fahrizah</h1>
+            <p class="subtitle">Web Developer & Tech Enthusiast Portfolio</p>
+            <a href="#About" class="btn">Tentang Saya</a>
+        </div>
+    </section>
+
+    <section id="About" class="reveal">
+        <div class="container about-container">
+            <div class="about-image">
+                <img src="./resource/1727331379309.jpg" alt="Foto Rizkyan Dwi Fahrizah">
+            </div>
+            <div class="about-text">
+                <h2>Tentang Saya</h2>
+                <p>
+                    Hai, saya Rizkyan Dwi Fahrizah, seorang siswa di SMK Negeri 2 Buduran dengan jurusan 
+                    <a href="https://www.smkn2buduran.sch.id/jurusan-rekayasa-perangkat-lunak/" target="_blank">Rekayasa Perangkat Lunak</a>.
+                    Saya memiliki gairah yang besar terhadap dunia teknologi, khususnya dalam pengembangan web.
+                    <span id="dots">...</span>
+                    <span id="about-full">
+                        Selain itu, saya juga tertarik untuk mendalami web server, konfigurasi server, hingga perakitan dan perbaikan hardware. Saya senang belajar bagaimana sebuah sistem bekerja dari hulu ke hilir dan selalu antusias mencari solusi teknis untuk berbagai tantangan IT.
+                    </span>
+                </p>
+                <button id="readMoreBtn" class="read-more-mobile">Read More</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="Projeks" class="reveal">
+        <div class="container">
+            <h2>Projek Saya</h2>
+            <div class="slider-wrapper">
+                <div class="slider-container">
+                    <div class="slide">
+                        <img src="./resource/Web1 foto.jpeg" alt="Projek Website Cover Music">
+                        <div class="slide-content">
+                            <h3>Website Cover Music</h3>
+                            <p>Sebuah platform untuk berbagi dan mendengarkan cover lagu. Dibuat dengan HTML, CSS, dan JS.</p>
+                            <div class="slide-buttons">
+                                <button onclick="window.open('https://github.com/Xsany6/Projek-/tree/main/web1', '_blank')">Source</button>
+                                <button onclick="window.open('https://www.youtube.com/@ShaniaYan', '_blank')">Play</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="./resource/foto web smp.jpeg" alt="Projek Website Sekolah SMP">
+                        <div class="slide-content">
+                            <h3>Website Sekolah SMP</h3>
+                            <p>Profil sekolah SMPN 1 Candi, lengkap dengan informasi dan galeri. Dibangun dengan PHP.</p>
+                            <div class="slide-buttons">
+                                <button onclick="window.location.href='./Website resource/tugas membuat web sekolah smp/index.php'">View</button>
+                                <button onclick="window.open('https://github.com/Xsany6/Projek-/tree/main/tugas%20membuat%20web%20sekolah%20smp', '_blank')">Source</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="./resource/WhatsApp Image 2024-09-03 at 20.27.28.jpeg" alt="Projek Website Toko Online">
+                        <div class="slide-content">
+                            <h3>Website Toko Online</h3>
+                            <p>Contoh website e-commerce sederhana untuk menampilkan dan menjual produk secara online.</p>
+                            <div class="slide-buttons">
+                                <button onclick="window.location.href='./Website resource/website_shoping/index.html'">View</button>
+                                <button onclick="window.open('https://github.com/Xsany6/Projek-/tree/main/website_shoping', '_blank')">Source</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                      <img src="./resource/WhatsApp Image 2025-04-19 at 18.52.37.jpeg" alt="Program Aktivasi">
+                      <div class="slide-content">
+                        <h3>Program Aktivasi Office</h3>
+                        <p>Sebuah skrip batch sederhana untuk membantu proses aktivasi produk Microsoft Office.</p>
+                        <div class="slide-buttons">
+                           <button onclick="window.open('https://github.com/Xsany6/Aktivasi_Of_rizkyan', '_blank')">Download</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slide">
+                      <img src="./resource/WhatsApp Image 2025-05-31 at 20.59.34.jpeg" alt="CasaOS di STB">
+                       <div class="slide-content">
+                        <h3>CasaOS di STB</h3>
+                        <p>Eksperimen instalasi dan konfigurasi CasaOS pada perangkat STB untuk server rumah.</p>
+                        <div class="slide-buttons">
+                           <button onclick="window.open('https://www.youtube.com/watch?v=hIpA51p09iY&t=1413s', '_blank')">Tutorial</button>
+                        </div>
+                       </div>
+                    </div>
+                     <div class="slide">
+                      <img src="./resource/WhatsApp Image 2025-05-24 at 01.03.52.jpeg" alt="DDOS Attack">
+                      <div class="slide-content">
+                        <h3>Edukasi Serangan DDOS</h3>
+                        <p>Dokumentasi dan tutorial penggunaan tool SlowHTTPTest untuk tujuan edukasi keamanan.</p>
+                        <div class="slide-buttons">
+                            <button onclick="window.open('https://www.kali.org/tools/slowhttptest/', '_blank')">Dokumentasi</button>
+                            <button onclick="window.open('https://www.youtube.com/watch?v=zlW7Mr0N2vg&list=LL&index=10&t=1290s', '_blank')">Tutorial</button>
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontak" class="reveal">
+        <div class="container kontak-container">
+            <h2>Hubungi Saya</h2>
+            <p>Punya pertanyaan atau ingin berkolaborasi? Jangan ragu untuk menghubungi saya!</p>
+            <form action="simpan-pesan.php" method="post" class="contact-form">
+                <input type="text" name="nama" placeholder="Nama Anda" required>
+                <input type="email" name="email" placeholder="Email Anda" required>
+                <textarea name="pesan" rows="5" placeholder="Pesan Anda" required></textarea>
+                <button type="submit" class="btn-kirim">Kirim Pesan</button>
+            </form>
+            <div class="sosial">
+                <a href="https://wa.me/62" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:ff29042028@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://instagram.com/xsany1" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/x-sany-918452366/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-socials">
+                <a href="https://github.com/xsany6" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.tiktok.com/@xsany6" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="mailto:ff29042028@example.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>© 2025 Rizkyan Dwi Fahrizah<br>Web Developer & Tech Enthusiast Portfolio.</p>
+        </div>
+    </footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  // Loader
+  const loader = document.getElementById('loader');
+  window.addEventListener('load', () => {
+      loader.classList.add('hidden');
+  });
+
+  // Mobile Menu Toggle
+  const menuIcon = document.getElementById("menu-icon");
+  const menuList = document.getElementById("menu-list");
+  const navLinks = document.querySelectorAll('.nav-links li a');
+
+  menuIcon.addEventListener("click", () => {
+    menuList.classList.toggle("active");
+    // Toggle icon between list and x
+    const icon = menuIcon.querySelector('i');
+    if(icon.classList.contains('ph-list')){
+        icon.classList.remove('ph-list');
+        icon.classList.add('ph-x');
+    } else {
+        icon.classList.remove('ph-x');
+        icon.classList.add('ph-list');
+    }
+  });
+
+  // Close menu when a link is clicked
+  navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+          if (menuList.classList.contains('active')) {
+              menuList.classList.remove('active');
+              menuIcon.querySelector('i').classList.replace('ph-x', 'ph-list');
+          }
+      });
+  });
+
+  // Dropdown toggle on mobile
+  const dropdown = document.querySelector('.dropdown');
+  dropdown.addEventListener('click', function(e) {
+      if(window.innerWidth <= 768) {
+        // Prevent page jump if it's the main dropdown link
+        if (e.target.isEqualNode(dropdown.querySelector('a'))) {
+             e.preventDefault();
+        }
+        this.classList.toggle('active');
+      }
+  });
+
+
+  // Navbar Scroll Behavior
+  let lastScrollTop = 0;
+  const header = document.getElementById("header");
+  window.addEventListener("scroll", () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop) {
+      header.classList.add("hidden"); // Scroll Down
+    } else {
+      header.classList.remove("hidden"); // Scroll Up
+    }
+    // Add scrolled class for background change
+    if (scrollTop > 50) {
+        header.classList.add("scrolled");
+    } else {
+        header.classList.remove("scrolled");
+    }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
+
+  // Read More / Read Less for Mobile
+  const readMoreBtn = document.getElementById("readMoreBtn");
+  const aboutFull = document.getElementById("about-full");
+  const dots = document.getElementById("dots");
+
+  function setupReadMore() {
+      if (window.innerWidth <= 768) {
+          readMoreBtn.style.display = 'inline-block';
+          dots.style.display = 'inline';
+          aboutFull.style.display = 'none';
+      } else {
+          readMoreBtn.style.display = 'none';
+          dots.style.display = 'none';
+          aboutFull.style.display = 'inline';
+      }
+  }
+
+  readMoreBtn.addEventListener("click", () => {
+    const isHidden = aboutFull.style.display === "none";
+    aboutFull.style.display = isHidden ? "inline" : "none";
+    dots.style.display = isHidden ? "none" : "inline";
+    readMoreBtn.textContent = isHidden ? "Read Less" : "Read More";
+  });
+
+  window.addEventListener("resize", setupReadMore);
+  setupReadMore(); // Initial check
+
+
+  // Scroll Reveal Animation
+  const reveals = document.querySelectorAll(".reveal");
+  function revealOnScroll() {
+    for (let i = 0; i < reveals.length; i++) {
+      const windowHeight = window.innerHeight;
+      const elementTop = reveals[i].getBoundingClientRect().top;
+      const revealPoint = 100;
+
+      if (elementTop < windowHeight - revealPoint) {
+        reveals[i].classList.add("active");
+      }
+    }
+  }
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll(); // Initial check
+  
+});
+</script>
+
+</body>
+</html>

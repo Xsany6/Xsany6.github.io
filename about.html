@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tentang Saya - Rizkyan Dwi Fahrizah</title>
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="_488bf90c-b1a3-46a8-9da7-cfbd6e91c783.ico" type="image/x-icon">
+
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --section-bg: #1e293b;
+      --text-color: #e2e8f0;
+      --primary-color: #38bdf8;
+      --accent-color: #94a3b8;
+      --border-color: #334155;
+      --shadow-color: rgba(0, 0, 0, 0.4);
+    }
+
+    /* === Reset & Base Styles === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      line-height: 1.7;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1, h2 {
+        font-weight: 700;
+        color: var(--primary-color);
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    /* === Header Navigation === */
+    .main-header {
+      background-color: var(--section-bg);
+      padding: 1rem 0;
+      box-shadow: 0 4px 15px var(--shadow-color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .main-header .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .back-home-link {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.3s ease;
+    }
+
+    .back-home-link:hover {
+      color: var(--primary-color);
+    }
+
+    /* === Main Profile Section === */
+    .profile-section {
+      padding: 60px 0;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .profile-grid {
+        grid-template-columns: 300px 1fr;
+        gap: 3rem;
+      }
+    }
+
+    .profile-image-container {
+      text-align: center;
+    }
+
+    .profile-img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid var(--primary-color);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+    }
+
+    .profile-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 1.5rem;
+    }
+
+    .profile-subtitle {
+      font-size: 1.1rem;
+      color: var(--primary-color);
+      font-weight: 400;
+    }
+
+    .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background-color: var(--border-color);
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        margin-top: 1rem;
+    }
+    .status-indicator {
+        width: 10px;
+        height: 10px;
+        background-color: #28a745;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
+    }
+
+    .profile-details {
+      background-color: var(--section-bg);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px var(--shadow-color);
+    }
+
+    .info-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .info-text {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: 1rem;
+    }
+    
+    .info-text i {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-top: 5px;
+    }
+
+    .info-text strong {
+      display: block;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    /* === Skills & Hobbies Section === */
+    .skills-section {
+        padding: 60px 0;
+        background-color: var(--section-bg);
+    }
+
+    .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    @media (min-width: 992px) {
+        .skills-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .skill-card {
+        background-color: var(--bg-color);
+        padding: 1.5rem;
+        border-radius: 12px;
+    }
+
+    .skill-card h3 {
+        text-align: left;
+        color: #fff;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .skill-card h3 i {
+        color: var(--primary-color);
+    }
+    
+    .skill-list, .hobby-list {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .skill-list li, .hobby-list li {
+        background-color: var(--border-color);
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    }
+
+    .skill-list li:hover, .hobby-list li:hover {
+        background-color: var(--primary-color);
+        color: #fff;
+        transform: translateY(-3px);
+    }
+
+    /* === Map & Download Section === */
+    .map-section {
+        padding: 60px 0;
+    }
+    iframe.map {
+        width: 100%;
+        height: 350px;
+        border: 0;
+        border-radius: 16px;
+        margin-top: 1rem;
+        filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+    }
+
+    .download-section {
+        text-align: center;
+        margin-top: 2rem;
+    }
+    
+    .btn-download {
+      background-color: var(--primary-color);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+    }
+    .btn-download:hover {
+      background-color: #0ea5e9;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
+    }
+    
+    /* === Footer with Certificate Scroller === */
+    .certificates-footer {
+        padding: 4rem 0;
+        background-color: var(--bg-color);
+        position: relative;
+        overflow: hidden; /* Important for scroller */
+        border-top: 1px solid var(--border-color);
+    }
+
+    .certificates-footer h2 {
+        margin-bottom: 2rem;
+    }
+
+    .scroller {
+        max-width: 100%;
+    }
+
+    .scroller-inner {
+        display: flex;
+        gap: 1.5rem;
+        width: max-content; /* Important for scroller */
+        animation: scroll 40s linear infinite;
+    }
+
+    .scroller-inner img {
+        height: 150px; /* Adjust height as needed */
+        width: auto;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px var(--shadow-color);
+    }
+    
+    @keyframes scroll {
+        to {
+            transform: translate(calc(-50% - 0.75rem)); /* Adjust based on gap */
+        }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header Navigation -->
+<header class="main-header">
+  <div class="container">
+    <a href="index.html" class="back-home-link">
+      <i class="bi bi-arrow-left-circle"></i>
+      <span>Kembali ke Home</span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <!-- Profile Section -->
+  <section class="profile-section">
+    <div class="container">
+      <div class="profile-grid">
+        <div class="profile-image-container">
+          <img src="_488bf90c-b1a3-46a8-9da7-cfbd6e91c783.ico" alt="Foto Profil Rizkyan" class="profile-img" />
+          <h1 class="profile-title">Rizkyan Dwi F.</h1>
+          <p class="profile-subtitle">Siswa / Tech Enthusiast</p>
+          <div class="status">
+            <span class="status-indicator"></span>
+            <span>Status: Aktif PKL</span>
+          </div>
+        </div>
+
+        <div class="profile-details">
+            <div class="info-group">
+                <div class="info-text">
+                    <i class="bi bi-calendar-event"></i>
+                    <div>
+                      <strong>Tanggal Lahir:</strong>
+                      <span>29 April 2008</span>
+                    </div>
+                </div>
+                <div class="info-text">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <div>
+                      <strong>Tempat Lahir:</strong>
+                      <span>Jawa Timur, Kab. Sidoarjo</span>
+                    </div>
+                </div>
+                <div class="info-text">
+                    <i class="bi bi-mortarboard-fill"></i>
+                    <div>
+                    <strong style="color: white;">Sekolah:</strong>
+                    <a href="https://smkn2buduran.sch.id/" style="text-decoration: none; color: white;">
+                      <span>SMKN 2 Buduran</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="info-text">
+                  <i class="bi bi-briefcase-fill" style="color: rgb(2, 156, 245);"></i>
+                  <div>
+                    <strong style="color: white;">Magang/PKL:</strong>
+                    <a href="https://www.variabeton.com/" style="text-decoration: none; color: white;">
+                      <span>PT. Varia Usaha Beton (IT Support)</span>
+                    </a>
+                  </div>
+                </div>
+
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills and Hobbies Section -->
+  <section class="skills-section">
+      <div class="container">
+        <h2>Keahlian & Minat</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3><i class="bi bi-tools"></i> Keahlian Teknis (Skills)</h3>
+                <ul class="skill-list">
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>PHP</li>
+                    <li>Management Server</li>
+                    <li>Maintenance Web Server</li>
+                    <li>Maintenance Hardware</li>
+                    <li>Prompt Engineering AI</li>
+                    <li>Perakitan Komputer</li>
+                    <li>Database MySQL</li>
+                    <li>Konfigurasi Apache/Nginx</li>
+                    <li>Analisa Sistem</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3><i class="bi bi-heart-pulse"></i> Hobi & Minat</h3>
+                <ul class="hobby-list">
+                    <li>Membaca Buku Teknologi</li>
+                    <li>Riset Informasi IT</li>
+                    <li>Ngoprek Komputer</li>
+                    <li>Game Strategi</li>
+                    <li>Menonton Tutorial IT</li>
+                    <li>Eksperimen Jaringan</li>
+                </ul>
+            </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- Map & Download Section -->
+  <section class="map-section">
+      <div class="container">
+          <h2>Lokasi Sekolah</h2>
+          <iframe
+            class="map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.252333276891!2d112.72086446155517!3d-7.437307289000982!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7e77ba09185a9%3A0x80a96e7778bba87d!2sSMKN%202%20BUDURAN%20SIDOARJO!5e0!3m2!1sid!2sid!4v1749387777921!5m2!1sid!2sid"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          <div class="download-section">
+            <a href="Rizkyan_Dwi_F.pdf" class="btn-download" download>
+                <i class="bi bi-download"></i> Unduh Biodata (PDF)
+            </a>
+          </div>
+      </div>
+  </section>
+</main>
+
+<!-- Footer with Certificate Scroller -->
+<footer class="certificates-footer">
+    <div class="container">
+      <h2>Sertifikat & Pencapaian</h2>
+    </div>
+    <div class="scroller" data-speed="slow">
+      <div class="scroller-inner">
+        <!-- Ganti src dengan path gambar sertifikat Anda -->
+        <!-- Duplikat gambar untuk menciptakan efek tak terbatas -->
+        <img src="https://placehold.co/400x280/1e293b/38bdf8?text=Sertifikat+1" alt="Placeholder Sertifikat 1">
+        <img src="https://placehold.co/400x280/1e293b/38bdf8?text=Sertifikat+2" alt="Placeholder Sertifikat 2">
+        <img src="https://placehold.co/400x280/1e293b/38bdf8?text=Sertifikat+3" alt="Placeholder Sertifikat 3">
+        <img src="https://placehold.co/400x280/1e293b/38bdf8?text=Sertifikat+4" alt="Placeholder Sertifikat 4">
+        <img src="https://placehold.co/400x280/1e293b/38bdf8?text=Sertifikat+5" alt="Placeholder Sertifikat 5">
+        
+        <!-- Duplikat Blok Gambar -->
+        <img src="https://placehold.co/400x280/1e293b/38bdf8?text=Sertifikat+1" alt="Placeholder Sertifikat 1">
+        <img src="https://placehold.co/400x280/1e293b/38bdf8?text=Sertifikat+2" alt="Placeholder Sertifikat 2">
+        <img src="https://placehold.co/400x280/1e293b/38bdf8?text=Sertifikat+3" alt="Placeholder Sertifikat 3">
+        <img src="https://placehold.co/400x280/1e293b/38bdf8?text=Sertifikat+4" alt="Placeholder Sertifikat 4">
+        <img src="https://placehold.co/400x280/1e293b/38bdf8?text=Sertifikat+5" alt="Placeholder Sertifikat 5">
+      </div>
+    </div>
+</footer>
+
+<script>
+// Script untuk animasi scroller
+const scroller = document.querySelector(".scroller");
+
+// Fungsi untuk menduplikasi item jika scroller tidak penuh
+function addAnimation() {
+  const scrollerInner = scroller.querySelector(".scroller-inner");
+  const scrollerContent = Array.from(scrollerInner.children);
+  
+  // Duplikasi hanya jika dibutuhkan
+  if (!scroller.hasAttribute("data-animated")) {
+    scrollerContent.forEach(item => {
+      const duplicatedItem = item.cloneNode(true);
+      duplicatedItem.setAttribute("aria-hidden", true);
+      scrollerInner.appendChild(duplicatedItem);
+    });
+    scroller.setAttribute("data-animated", "true");
+  }
+}
+
+// Cek apakah pengguna lebih suka mengurangi gerakan
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  addAnimation();
+}
+</script>
+
+</body>
+</html>
