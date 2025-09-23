@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Lengkap SlowHTTPTest</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for a clean, modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom styles to match the Kali documentation theme with improvements */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(180deg, #232526 0%, #1a1a1a 100%);
+            color: #dcdcdc;
+            line-height: 1.7;
+        }
+        h1, h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            color: #ffffff;
+            border-bottom: 2px solid #00aaff;
+            padding-bottom: 10px;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            border: none;
+        }
+        h2 {
+            font-size: 1.75rem;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: #1e1e1e;
+            padding: 0.2rem 0.4rem;
+            border-radius: 5px;
+            font-size: 0.9em;
+            color: #9cdcfe;
+        }
+        pre {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            border: 1px solid #3a3a3a;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+        .code-container {
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: #333;
+            color: #ccc;
+            border: 1px solid #444;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s ease-in-out;
+            opacity: 0.5;
+        }
+        .code-container:hover .copy-btn {
+            opacity: 1;
+            background-color: #007acc;
+            color: white;
+        }
+        .copy-btn:hover {
+            transform: scale(1.05);
+        }
+        a {
+            color: #64b5f6;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        a:hover {
+            color: #90caf9;
+            text-decoration: underline;
+        }
+        li {
+            margin-bottom: 0.75rem;
+        }
+        main {
+            background-color: #2a2a2a;
+            padding: 2rem 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+        .nav-menu {
+            background-color: rgba(42, 42, 42, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            display: inline-flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid #3a3a3a;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl py-12">
+
+        <!-- Header Section -->
+        <header class="text-center mb-8">
+            <h1 class="text-5xl font-extrabold text-white">Panduan Lengkap SlowHTTPTest</h1>
+            <p class="text-xl text-gray-400 mt-3">Simulator Serangan Denial of Service Lapisan Aplikasi</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="text-center">
+            <div class="nav-menu">
+                <a href="#installation" class="font-semibold hover:text-white transition-colors">Instalasi</a>
+                <a href="#how-to-use" class="font-semibold hover:text-white transition-colors">Cara Pakai</a>
+                <a href="#options" class="font-semibold hover:text-white transition-colors">Opsi</a>
+                <a href="#examples" class="font-semibold hover:text-white transition-colors">Contoh</a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+            <!-- INSTALLATION Section -->
+            <section id="installation">
+                <h2><i class="fas fa-download mr-3"></i>Instalasi</h2>
+                <p>Cara menginstal <code>slowhttptest</code> tergantung pada sistem operasi Anda. Di sebagian besar distribusi Linux berbasis penetration testing, alat ini sudah terpasang.</p>
+                <p class="mt-4 mb-2 font-medium">Di Debian/Ubuntu/Kali Linux:</p>
+                <p>Jika belum terpasang, Anda dapat menginstalnya dengan mudah menggunakan manajer paket <code>apt</code>.</p>
+                <div class="code-container mt-2">
+                    <pre><code class="language-bash">sudo apt-get update && sudo apt-get install slowhttptest</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Salin</button>
+                </div>
+
+                <p class="mt-6 mb-2 font-medium">Dari Kode Sumber (Source Code):</p>
+                <p>Untuk sistem lain atau jika Anda menginginkan versi terbaru, Anda dapat meng-compile dari kode sumber yang tersedia di GitHub.</p>
+                <p class="mt-2">Kunjungi repositori resmi: <a href="https://github.com/shekyan/slowhttptest" target="_blank" rel="noopener noreferrer">github.com/shekyan/slowhttptest</a> dan ikuti petunjuk instalasi di sana.</p>
+            </section>
+
+            <!-- HOW TO USE Section -->
+            <section id="how-to-use">
+                <h2><i class="fas fa-terminal mr-3"></i>Cara Menjalankan Perintah</h2>
+                <p>Struktur dasar untuk menjalankan perintah <code>slowhttptest</code> adalah sebagai berikut:</p>
+                <div class="code-container mt-2">
+                    <pre><code class="language-bash">slowhttptest -[mode] [options] -u &lt;URL target&gt;</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Salin</button>
+                </div>
+                <ul class="list-disc pl-5 mt-4">
+                    <li><code>-[mode]</code>: Menentukan jenis serangan yang akan diluncurkan. Mode yang paling umum adalah:
+                        <ul class="list-circle pl-6 mt-2">
+                            <li><code>-H</code> untuk serangan <strong>Slowloris</strong> (header lambat).</li>
+                            <li><code>-B</code> untuk serangan <strong>Slow Body</strong> (POST lambat).</li>
+                            <li><code>-R</code> untuk serangan <strong>Slow Read</strong> (Apache Range Header).</li>
+                        </ul>
+                    </li>
+                    <li class="mt-2"><code>[options]</code>: Opsi tambahan untuk mengontrol serangan, seperti jumlah koneksi (<code>-c</code>), durasi (<code>-l</code>), atau kecepatan koneksi (<code>-r</code>).</li>
+                    <li class="mt-2"><code>-u &lt;URL target&gt;</code>: Ini adalah parameter <strong>wajib</strong> yang menentukan URL target yang akan diserang.</li>
+                </ul>
+            </section>
+            
+            <!-- DESCRIPTION Section -->
+            <section id="description">
+                <h2><i class="fas fa-info-circle mr-3"></i>Deskripsi Alat</h2>
+                <p>
+                    SlowHTTPTest adalah alat yang dapat dikonfigurasi yang mensimulasikan beberapa serangan Denial of Service lapisan aplikasi. Ini membantu menguji server Anda untuk kerentanan DoS lapisan aplikasi seperti Slowloris, Slow HTTP POST, dan serangan oleh Apache Range Header.
+                </p>
+                <p class="mt-4">
+                    Alat ini mensimulasikan serangan-serangan ini dengan cara yang efisien dan lambat, membuatnya sulit dideteksi oleh mekanisme pertahanan berbasis volume.
+                </p>
+            </section>
+            
+            <!-- OPTIONS Section -->
+            <section id="options">
+                <h2><i class="fas fa-cogs mr-3"></i>Opsi Perintah</h2>
+                <ul class="list-disc pl-5 columns-1 md:columns-2 gap-x-8">
+                    <li><strong>-a &lt;range&gt;</strong> - Setel rentang awal untuk header Range.</li>
+                    <li><strong>-b &lt;bytes&gt;</strong> - Setel ukuran untuk header Range.</li>
+                    <li><strong>-c &lt;number&gt;</strong> - Jumlah koneksi target (default: 50).</li>
+                    <li><strong>-d &lt;URL&gt;</strong> - URL host proxy.</li>
+                    <li><strong>-e &lt;URL&gt;</strong> - URL host probe proxy.</li>
+                    <li><strong>-f &lt;content-type&gt;</strong> - Jenis konten untuk header.</li>
+                    <li><strong>-g</strong> - Hasilkan statistik dalam format CSV dan HTML.</li>
+                    <li><strong>-h</strong> - Tampilkan pesan bantuan.</li>
+                    <li><strong>-i &lt;seconds&gt;</strong> - Interval pengiriman data (default: 10).</li>
+                    <li><strong>-k &lt;number&gt;</strong> - Jumlah permintaan per koneksi.</li>
+                    <li><strong>-l &lt;seconds&gt;</strong> - Durasi tes dalam detik (default: 240).</li>
+                    <li><strong>-m &lt;verbs&gt;</strong> - Daftar kata kerja untuk probe.</li>
+                    <li><strong>-n &lt;seconds&gt;</strong> - Interval antar data.</li>
+                    <li><strong>-o &lt;file&gt;</strong> - Nama file keluaran.</li>
+                    <li><strong>-p &lt;seconds&gt;</strong> - Timeout untuk probe (default: 5).</li>
+                    <li><strong>-r &lt;number&gt;</strong> - Koneksi per detik (default: 50).</li>
+                    <li><strong>-s &lt;bytes&gt;</strong> - Nilai header Content-Length.</li>
+                    <li><strong>-t &lt;verb&gt;</strong> - Kata kerja permintaan (default: GET).</li>
+                    <li><strong>-u &lt;URL&gt;</strong> - URL Target (wajib).</li>
+                    <li><strong>-v &lt;level&gt;</strong> - Tingkat verbositas (0-4).</li>
+                    <li><strong>-w &lt;bytes&gt;</strong> - Ukuran jendela TCP bawah.</li>
+                    <li><strong>-x &lt;bytes&gt;</strong> - Panjang maksimum data.</li>
+                    <li><strong>-y &lt;bytes&gt;</strong> - Ukuran jendela TCP atas.</li>
+                    <li><strong>-z &lt;bytes&gt;</strong> - Baca byte dari buffer.</li>
+                </ul>
+            </section>
+
+            <!-- EXAMPLES Section -->
+            <section id="examples">
+                <h2><i class="fas fa-laptop-code mr-3"></i>Contoh Penggunaan</h2>
+                
+                <p class="mt-6 mb-2 font-semibold text-lg">1. Serangan Slowloris (Header Lambat)</p>
+                <p>Perintah ini akan membuka 1000 koneksi ke target. Setiap koneksi akan mengirim header HTTP secara perlahan (setiap 10 detik) untuk membuat server terus menunggu dan menghabiskan sumber dayanya.</p>
+                <div class="code-container mt-2">
+                    <pre><code class="language-bash">slowhttptest -c 1000 -H -g -o stats_slowloris -i 10 -r 200 -t GET -u https://example.com/</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Salin</button>
+                </div>
+                <ul class="list-disc pl-5 mt-3 text-sm">
+                    <li><code>-c 1000</code>: Membuat 1000 koneksi.</li>
+                    <li><code>-H</code>: Mode Slowloris (Header).</li>
+                    <li><code>-g</code>: Hasilkan file statistik.</li>
+                    <li><code>-o stats_slowloris</code>: Nama file output.</li>
+                    <li><code>-i 10</code>: Kirim data setiap 10 detik.</li>
+                </ul>
+
+                <p class="mt-8 mb-2 font-semibold text-lg">2. Serangan Slow POST (Body Lambat)</p>
+                <p>Serangan ini mengirim header yang menyatakan akan mengirim data POST dalam jumlah besar (8192 bytes), tetapi kemudian mengirim isi (body) data tersebut sangat lambat (setiap 110 detik), mengikat koneksi server.</p>
+                <div class="code-container mt-2">
+                    <pre><code class="language-bash">slowhttptest -c 1000 -B -g -o stats_slowpost -i 110 -r 200 -s 8192 -t POST -u https://example.com/login</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Salin</button>
+                </div>
+                <ul class="list-disc pl-5 mt-3 text-sm">
+                     <li><code>-c 1000</code>: Membuat 1000 koneksi.</li>
+                     <li><code>-B</code>: Mode Slow Body (POST).</li>
+                     <li><code>-i 110</code>: Kirim data body setiap 110 detik.</li>
+                     <li><code>-s 8192</code>: Memberitahu server bahwa ukuran body adalah 8192 bytes.</li>
+                </ul>
+
+                <p class="mt-8 mb-2 font-semibold text-lg">3. Serangan Slow Read (Apache Range Header)</p>
+                <p>Serangan ini meminta sumber daya dari server tetapi membaca responsnya dengan sangat lambat, memaksa server untuk menjaga koneksi tetap terbuka dan menghabiskan memorinya.</p>
+                <div class="code-container mt-2">
+                    <pre><code class="language-bash">slowhttptest -c 1000 -R -g -o stats_slowread -r 200 -u https://example.com/ -t HEAD -x 24 -p 3</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Salin</button>
+                </div>
+                 <ul class="list-disc pl-5 mt-3 text-sm">
+                     <li><code>-c 1000</code>: Membuat 1000 koneksi.</li>
+                     <li><code>-R</code>: Mode Slow Read.</li>
+                     <li><code>-x 24</code>: Baca 24 byte data per interval.</li>
+                     <li><code>-p 3</code>: Tunggu 3 detik antar interval pembacaan.</li>
+                </ul>
+            </section>
+
+            <!-- AUTHOR Section -->
+            <section id="author">
+                <h2><i class="fas fa-user-edit mr-3"></i>Author</h2>
+                <p>Halaman manual ini ditulis oleh Gibson Kerns. Alat slowhttptest ditulis oleh Sergey Shekyan.</p>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center mt-16 text-gray-500 text-sm">
+            <p>Halaman ini adalah representasi dari dokumentasi alat Kali Linux.</p>
+            <p>Untuk dokumentasi resmi, kunjungi <a href="https://www.kali.org/tools/slowhttptest/" target="_blank" rel="noopener noreferrer">kali.org</a>.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function copyCode(button) {
+            const codeContainer = button.parentElement;
+            const codeElement = codeContainer.querySelector('code');
+            const codeToCopy = codeElement.innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeToCopy;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(codeToCopy);
+                } else {
+                    document.execCommand('copy');
+                }
+                button.innerHTML = '<i class="fas fa-check"></i> Disalin!';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i> Salin';
+                }, 2000);
+            } catch (err) {
+                console.error('Gagal menyalin teks: ', err);
+                button.innerHTML = '<i class="fas fa-times"></i> Gagal';
+                 setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i> Salin';
+                }, 2000);
+            } finally {
+                document.body.removeChild(tempTextArea);
+            }
+        }
+    </script>
+</body>
+</html>
+
