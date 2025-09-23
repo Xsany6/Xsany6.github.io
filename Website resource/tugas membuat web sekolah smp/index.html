@@ -1,132 +1,1284 @@
-<?php
-    require'SMPN 1 Candi.php';
-?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="_488bf90c-b1a3-46a8-9da7-cfbd6e91c783.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMPN 1 Candi Sidoarjo</title>
-    <link rel="stylesheet" href="style.css">
+    <title>SMPN 1 Candi Sidoarjo - Unggul dalam Prestasi dan Karakter</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="_488bf90c-b1a3-46a8-9da7-cfbd6e91c783.ico" type="image/x-icon">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        :root {
+            --primary-blue: #1e40af;
+            --primary-dark: #1e3a8a;
+            --secondary-gold: #f59e0b;
+            --accent-cyan: #06b6d4;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --text-dark: #1f2937;
+            --text-gray: #6b7280;
+            --text-light: #9ca3af;
+            --border-light: #e5e7eb;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --gradient-primary: linear-gradient(135deg, #1e40af 0%, #06b6d4 100%);
+            --gradient-secondary: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            --nav-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Background Elements */
+        .bg-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(30, 64, 175, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(245, 158, 11, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-dark);
+        }
+
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); }
+        h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+
+        .section-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.1), rgba(6, 182, 212, 0.1));
+            border: 1px solid rgba(30, 64, 175, 0.2);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Glass Effect */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Header */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            padding: 0 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--bg-white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        #header.scrolled .nav-logo {
+            color: var(--primary-blue);
+        }
+
+        .nav-logo::before {
+            content: '🏫';
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--bg-white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 12px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        #header.scrolled .nav-links a {
+            color: var(--text-gray);
+        }
+
+        .nav-links a:hover,
+        #header.scrolled .nav-links a:hover {
+            color: var(--primary-blue);
+            background: rgba(30, 64, 175, 0.05);
+        }
+
+        .nav-links a.active {
+            background: var(--gradient-primary);
+            color: var(--bg-white) !important;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--bg-white);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        #header.scrolled .menu-toggle {
+            color: var(--primary-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.9), rgba(6, 182, 212, 0.8)),
+                        url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--bg-white);
+            padding: 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="grad1" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:rgba(255,255,255,0.1);stop-opacity:1" /><stop offset="100%" style="stop-color:rgba(255,255,255,0);stop-opacity:1" /></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23grad1)"/><circle cx="800" cy="300" r="150" fill="url(%23grad1)"/><circle cx="300" cy="700" r="120" fill="url(%23grad1)"/></svg>') no-repeat;
+            background-size: cover;
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 10px 24px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .hero h1 {
+            color: var(--bg-white);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .cta-primary {
+            background: var(--gradient-secondary);
+            color: var(--bg-white);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: var(--bg-white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-top: 1rem;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        #tentang {
+            background: var(--bg-white);
+            position: relative;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-content h2 {
+            margin-bottom: 2rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: var(--bg-light);
+            border-radius: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border: 1px solid var(--border-light);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .card-image {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.8), rgba(6, 182, 212, 0.6));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--bg-white);
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-content h3 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .card-content p {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* Vision Mission */
+        #misi {
+            background: var(--bg-light);
+        }
+
+        .vision-mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Facilities */
+        #fasilitas {
+            background: var(--bg-white);
+        }
+
+        /* Contact */
+        #kontak {
+            background: var(--bg-light);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: var(--bg-white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-white);
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background: var(--bg-white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid var(--border-light);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--bg-light);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background: var(--bg-white);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--gradient-primary);
+            color: var(--bg-white);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--bg-white);
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--bg-white);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary-gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+        }
+
+        .footer-bottom a {
+            color: var(--secondary-gold);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--gradient-primary);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+                box-shadow: var(--shadow-lg);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a,
+            #header.scrolled .nav-links a {
+                color: var(--text-dark);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                padding: 0 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .vision-mission-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 0 1rem;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .stat-item {
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<div>
-       
-    <header id="beranda">
-    <nav>
-            <ul>
-                <li><a href="#beranda">Beranda</a></li>
-                <li><a href="#tentang">Tentang</a></li>
-                <li><a href ="#misi">Visi-Misi</a></li>
-                <li><a href="#fasilitas">Fasilitas</a></li>
-                <li><a href="#kontak">Kontak</a></li>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <nav class="container navbar">
+            <a href="#beranda" class="nav-logo">SMPN 1 Candi</a>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="#beranda" class="nav-link">Beranda</a></li>
+                <li><a href="#tentang" class="nav-link">Tentang</a></li>
+                <li><a href="#misi" class="nav-link">Visi-Misi</a></li>
+                <li><a href="#fasilitas" class="nav-link">Fasilitas</a></li>
+                <li><a href="#kontak" class="nav-link">Kontak</a></li>
             </ul>
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="ph ph-list"></i>
+            </div>
         </nav>
-        <div class="hero">
-            <h1>SMPN 1 Candi Sidoarjo</h1>
-            <p><?=$beranda ?></p>
-            <a href="#tentang" class="cta-button">Pelajari Lebih Lanjut</a>
-        </div>
     </header>
 
-    <section id="tentang">
-       <h2>Tentang Sekolah</h2>
-        <p>SMPN 1 Candi merupakan salah satu sekolah menengah pertama unggulan di Kabupaten Sidoarjo 
-            yang dikenal dengan prestasi akademik dan non-akademik yang gemilang. 
-            Sejarah SMPN 1 Candi Sidoarjo dimulai sejak didirikannya sekolah ini pada tahun 1977. 
-            Sejak awal berdiri, SMPN 1 Candi telah berkomitmen untuk menyediakan pendidikan berkualitas bagi siswa-siswinya. 
-            Dengan berbagai fasilitas yang memadai dan tenaga pengajar yang profesional, sekolah ini terus berkembang dan berhasil mencetak lulusan-lulusan yang berprestasi di berbagai bidang.
-            Selain fokus pada akademik, SMPN 1 Candi Sidoarjo juga aktif dalam berbagai kegiatan ekstrakurikuler, seperti olahraga, seni, dan organisasi siswa. 
-            Hal ini bertujuan untuk mengembangkan potensi siswa secara menyeluruh, baik dari segi intelektual maupun karakter.
-            Secara keseluruhan, SMPN 1 Candi Sidoarjo terus berupaya untuk menjadi sekolah unggulan yang menghasilkan siswa-siswi berprestasi, 
-            baik di tingkat lokal, nasional, maupun internasional. 
-        </p>
-        </section>
-    <div class="misi">
-    <section id="misi">
-       <h2>Visi-Misi</h2>
-        <p>SMPN 1 Candi merupakan salah satu sekolah menengah pertama unggulan di Kabupaten Sidoarjo 
-            yang dikenal dengan prestasi akademik dan non-akademik yang gemilang. 
-            Dengan fasilitas yang lengkap dan tenaga pengajar yang berkompeten, 
-            SMPN 1 Candi terus berkomitmen untuk memberikan pendidikan terbaik kepada siswa-siswinya, 
-            serta membentuk generasi yang <?=$visi_misi[0]?>
-        <div>
+    <!-- Hero Section -->
+    <section class="hero" id="beranda">
+        <div class="bg-pattern"></div>
+        <div class="hero-content">
+            <div class="hero-badge">Selamat Datang di Sekolah Unggulan</div>
+            <h1>SMPN 1 Candi Sidoarjo</h1>
+            <p>Selamat datang di website resmi kami. Sekolah unggulan dengan komitmen untuk pendidikan berkualitas tinggi yang mengembangkan potensi siswa secara menyeluruh.</p>
+            <div class="cta-buttons">
+                <a href="#tentang" class="cta-button cta-primary">
+                    <i class="fas fa-play"></i>
+                    Pelajari Lebih Lanjut
+                </a>
+                <a href="#kontak" class="cta-button cta-secondary">
+                    <i class="fas fa-phone"></i>
+                    Hubungi Kami
+                </a>
             </div>
-            <div class="fasilitas-grid">
-            <div class="fasilitas-item">
-                <img src="img/<?=$fisi_msii[0];?>" alt="">
-                <div class="fasilitas-text">
-                    <p>Visi</p>
-                </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="tentang" class="reveal">
+        <div class="bg-pattern"></div>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Tentang Kami</div>
+                <h2>Sekolah Unggulan <span class="gradient-text">Berkarakter</span></h2>
+                <p class="section-subtitle">
+                    SMPN 1 Candi merupakan salah satu sekolah menengah pertama unggulan di Kabupaten Sidoarjo 
+                    yang dikenal dengan prestasi akademik dan non-akademik yang gemilang.
+                </p>
             </div>
             
-            <div class="fasilitas-item">
-                <img src="img/<?=$fisi_msii[1];?>" alt="">
-                <div class="fasilitas-text">
-                    <p>Misi</p>
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Gedung SMPN 1 Candi" loading="lazy">
+                </div>
+                <div class="about-content">
+                    <h3>Komitmen Pendidikan Berkualitas</h3>
+                    <p>
+                        Sejak awal berdiri, SMPN 1 Candi telah berkomitmen untuk menyediakan pendidikan berkualitas bagi siswa-siswinya. 
+                        Dengan berbagai fasilitas yang memadai dan tenaga pengajar yang profesional, sekolah ini terus berkembang dan 
+                        berhasil mencetak lulusan-lulusan yang berprestasi di berbagai bidang.
+                    </p>
+                    <p>
+                        Selain fokus pada akademik, SMPN 1 Candi Sidoarjo juga aktif dalam berbagai kegiatan ekstrakurikuler untuk 
+                        mengembangkan potensi siswa secara menyeluruh dan membentuk karakter yang kuat.
+                    </p>
                 </div>
             </div>
-            </div>
-        </p>
-            
-        </section>
-    </div>
-    <section id="fasilitas">
-    <div class="fasilitas">
-        <h2>Fasilitas</h2>
-        <p>SMPN 1 candi Sidoarjo merupakan salah satu sekolah favorit di Sidoarjo,
-            SMPN 1 candi juga memiliki beberapa fasilitas yang cukup mempuni.
-        </p>
-    </div>
-        <div class="fasilitas-grid">
-            <div class="fasilitas-item">
-                <img src="img/<?=$fotofasilitas[0];?>" alt="">
-                <div class="fasilitas-text">
-                    <p><?=$fasilitas[0]?></p>
+
+            <div class="about-stats">
+                <div class="stat-item">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Tahun Pengalaman</div>
                 </div>
-            </div>
-            <div class="fasilitas-item">
-                <img src="img/<?=$fotofasilitas[1];?>" alt="">
-                <div class="fasilitas-text">
-                    <p><?=$fasilitas[1]?></p>
+                <div class="stat-item">
+                    <div class="stat-number">800+</div>
+                    <div class="stat-label">Siswa Aktif</div>
                 </div>
-            </div>
-            <div class="fasilitas-item">
-                <img src="img/<?=$fotofasilitas[2];?>" alt="">
-                <div class="fasilitas-text">
-                    <p><?=$fasilitas[2]?></p>
-                </div>
-            </div>
-            <div class="fasilitas-item">
-                <img src="img/<?=$fotofasilitas[3];?>" alt="">
-                <div class="fasilitas-text">
-                    <p><?=$fasilitas[3]?></p>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Guru Berpengalaman</div>
                 </div>
             </div>
         </div>
-        
-</section>
-
-
-    <section id="kontak">
-        <h2>Kontak</h2>
-        <form>
-            <label for="name">Nama:</label>
-            <input type="text" id="name" name="name">
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email">
-            
-            <label for="message">Pesan:</label>
-            <textarea id="message" name="message"></textarea>
-            
-            <button type="submit">Kirim</button>
-        </form>
     </section>
 
+    <!-- Vision Mission Section -->
+    <section id="misi" class="reveal">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Visi & Misi</div>
+                <h2>Landasan <span class="gradient-text">Pendidikan Kami</span></h2>
+                <p class="section-subtitle">
+                    Dengan komitmen tinggi, kami membentuk generasi yang Cerdas, Berkarakter, dan Berwawasan Global 
+                    melalui visi dan misi yang jelas dan terarah.
+                </p>
+            </div>
+            <div class="vision-mission-grid">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Visi Sekolah" loading="lazy">
+                        <div class="card-overlay">
+                            <i class="fas fa-eye card-icon"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Visi Kami</h3>
+                        <p>Berakhlak Mulia, Berprestasi, Peduli, Dan Berbudaya Lingkungan Hidup. Menjadi sekolah yang menghasilkan generasi unggul dengan karakter kuat dan peduli lingkungan.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Misi Sekolah" loading="lazy">
+                        <div class="card-overlay">
+                            <i class="fas fa-target card-icon"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Misi Kami</h3>
+                        <p>Mengembangkan pembelajaran aktif dan kreatif, menanamkan nilai-nilai religius dan budi pekerti, serta menciptakan lingkungan belajar yang asri dan kondusif.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section id="fasilitas" class="reveal">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Fasilitas</div>
+                <h2>Fasilitas <span class="gradient-text">Terlengkap</span></h2>
+                <p class="section-subtitle">
+                    Kami menyediakan berbagai fasilitas yang lengkap dan modern untuk menunjang proses belajar mengajar 
+                    yang efektif dan nyaman bagi seluruh civitas akademika.
+                </p>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="./img/masjid.jpg" alt="Masjid SMPN 1 Candi" loading="lazy">
+                        <div class="card-overlay">
+                            <i class="fas fa-mosque card-icon"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Masjid</h3>
+                        <p>Masjid yang nyaman dan luas untuk kegiatan ibadah dan pembinaan spiritual siswa-siswi SMPN 1 Candi.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">
+                        <img src="./img/25969eac-d83f-48ea-9800-2a6ae4dc190d.jpg" alt="Kantin SMPN 1 Candi" loading="lazy">
+                        <div class="card-overlay">
+                            <i class="fas fa-utensils card-icon"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Kantin</h3>
+                        <p>Kantin yang bersih dan sehat dengan berbagai menu makanan bergizi untuk siswa dan guru.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">
+                        <img src="WhatsApp-Image-2022-08-08-at-17.00.49-1024x768.jpeg" alt="Lapangan SMPN 1 Candi" loading="lazy">
+                        <div class="card-overlay">
+                            <i class="fas fa-running card-icon"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Lapangan</h3>
+                        <p>Lapangan olahraga yang luas dan lengkap untuk berbagai aktivitas fisik dan kegiatan ekstrakurikuler olahraga.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">
+                        <img src="aula.jpg" alt="Aula SMPN 1 Candi" loading="lazy">
+                        <div class="card-overlay">
+                            <i class="fas fa-users card-icon"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Aula</h3>
+                        <p>Aula yang modern dan luas untuk berbagai kegiatan sekolah, seminar, dan acara resmi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontak" class="reveal">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Hubungi Kami</div>
+                <h2>Mari <span class="gradient-text">Berkolaborasi</span></h2>
+                <p class="section-subtitle">
+                    Punya pertanyaan atau ingin informasi lebih lanjut tentang sekolah kami? 
+                    Silakan hubungi kami melalui formulir di bawah ini atau kontak langsung.
+                </p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Informasi Kontak</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <strong>Alamat</strong><br>
+                           Jl. Mojopahit No.7, Dusun Larangan, Larangan,<br>
+                           Kec. Candi, Kabupaten Sidoarjo, Jawa Timur 61271
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <strong>Telepon</strong><br>
+                            (031) 8941105
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <strong>Email</strong><br>
+                            info@smpn1candi.sch.id
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <strong>Jam Operasional</strong><br>
+                            Senin - Jumat: 07:00 - 15:00<br>
+                            Sabtu: 07:00 - 12:00
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <h3>Kirim Pesan</h3>
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Nama Lengkap Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Alamat Email Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Nomor Telepon (Opsional)">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" placeholder="Tuliskan pesan atau pertanyaan Anda di sini..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Kirim Pesan
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy;  SMPN 1 Candi Sidoarjo. Website By <a href="../index.html"><span class="bold-text">Rizkyan</span></a></p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SMPN 1 Candi</h3>
+                    <p>Sekolah unggulan yang berkomitmen untuk mencetak generasi berprestasi dan berkarakter mulia.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Menu Utama</h3>
+                    <ul style="list-style: none;">
+                        <li><a href="#beranda">Beranda</a></li>
+                        <li><a href="#tentang">Tentang</a></li>
+                        <li><a href="#misi">Visi-Misi</a></li>
+                        <li><a href="#fasilitas">Fasilitas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Kontak</h3>
+                    <p>Jl. Raya Candi No. 123<br>Candi, Sidoarjo, Jawa Timur</p>
+                    <p>Telepon: (031) 8961234<br>Email: info@smpn1candi.sch.id</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SMPN 1 Candi Sidoarjo. Website By <a href="../index.html" target="_blank">Rizkyan</a></p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Elements
+            const header = document.getElementById('header');
+            const menuToggle = document.getElementById('menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const scrollProgress = document.getElementById('scroll-progress');
+            const contactForm = document.getElementById('contactForm');
+            
+            // Scroll Progress Bar
+            window.addEventListener('scroll', () => {
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const progress = (scrollTop / scrollHeight) * 100;
+                scrollProgress.style.width = progress + '%';
+            });
+
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Active navigation highlighting
+            window.addEventListener('scroll', () => {
+                const sections = document.querySelectorAll('section[id]');
+                const scrollPos = window.scrollY + 150;
+
+                sections.forEach(section => {
+                    const top = section.offsetTop;
+                    const bottom = top + section.offsetHeight;
+                    const id = section.getAttribute('id');
+                    const navLink = document.querySelector(`.nav-link[href="#${id}"]`);
+
+                    if (scrollPos >= top && scrollPos < bottom) {
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        if (navLink) navLink.classList.add('active');
+                    }
+                });
+            });
+
+            // Mobile menu toggle
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('ph-list');
+                    icon.classList.add('ph-x');
+                } else {
+                    icon.classList.remove('ph-x');
+                    icon.classList.add('ph-list');
+                }
+            });
+
+            // Close menu when a link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        menuToggle.querySelector('i').classList.replace('ph-x', 'ph-list');
+                    }
+                });
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const offsetTop = target.offsetTop - 100;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Reveal animation on scroll
+            const reveals = document.querySelectorAll('.reveal');
+            function revealOnScroll() {
+                for (let i = 0; i < reveals.length; i++) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveals[i].getBoundingClientRect().top;
+                    const revealPoint = 100;
+
+                    if (elementTop < windowHeight - revealPoint) {
+                        reveals[i].classList.add('active');
+                    }
+                }
+            }
+            
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Initial check
+
+            // Contact form submission
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(this);
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const phone = formData.get('phone');
+                const message = formData.get('message');
+                
+                // Simple validation
+                if (!name || !email || !message) {
+                    alert('Mohon lengkapi semua field yang wajib diisi.');
+                    return;
+                }
+                
+                // Simulate form submission
+                const submitBtn = this.querySelector('.submit-btn');
+                const originalText = submitBtn.innerHTML;
+                
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    alert('Terima kasih! Pesan Anda telah dikirim. Kami akan segera menghubungi Anda.');
+                    this.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 2000);
+            });
+
+            // Add loading animation to images
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            images.forEach(img => {
+                img.addEventListener('load', function() {
+                    this.style.opacity = '1';
+                });
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.3s ease';
+            });
+
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Add parallax effect to hero section
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero');
+                const speed = scrolled * 0.5;
+                
+                if (hero) {
+                    hero.style.backgroundPositionY = `${speed}px`;
+                }
+            });
+
+            // Statistics counter animation
+            const statNumbers = document.querySelectorAll('.stat-number');
+            let hasAnimated = false;
+            
+            function animateStats() {
+                if (hasAnimated) return;
+                
+                statNumbers.forEach(stat => {
+                    const target = parseInt(stat.textContent);
+                    const increment = target / 100;
+                    let current = 0;
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            stat.textContent = target + '+';
+                            clearInterval(timer);
+                        } else {
+                            stat.textContent = Math.floor(current) + '+';
+                        }
+                    }, 20);
+                });
+                
+                hasAnimated = true;
+            }
+            
+            // Trigger stats animation when about section is visible
+            const aboutSection = document.getElementById('tentang');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateStats();
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            if (aboutSection) {
+                observer.observe(aboutSection);
+            }
+        });
+    </script>
 </body>
 </html>
