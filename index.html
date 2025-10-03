@@ -826,6 +826,122 @@
     transform: translateY(0);
   }
 
+  /* Info Modal */
+  .info-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .info-modal.active {
+    display: flex;
+  }
+
+  .modal-content {
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    animation: modalSlideIn 0.3s ease;
+  }
+
+  @keyframes modalSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .modal-close:hover {
+    background: var(--gradient-primary);
+    transform: rotate(90deg);
+  }
+
+  .modal-content h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .modal-content h3 i {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .modal-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .modal-content ul li {
+    color: var(--text-secondary);
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .modal-content ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-primary);
+    font-weight: bold;
+  }
+
+  .modal-content .warning {
+    background: rgba(255, 0, 110, 0.1);
+    border: 1px solid rgba(255, 0, 110, 0.3);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-top: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .modal-content .warning i {
+    color: var(--accent-secondary);
+    margin-right: 0.5rem;
+  }
+
   /* Responsive Design */
   @media (max-width: 768px) {
     header {
@@ -969,6 +1085,28 @@
         <div class="loader-text">Loading Portfolio...</div>
     </div>
 
+    <!-- Info Modal -->
+    <div class="info-modal" id="infoModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3><i class="fas fa-key"></i> Microsoft Activation Tool</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                Tool otomatis untuk aktivasi produk Microsoft dengan mudah dan cepat.
+            </p>
+            <ul>
+                <li>Microsoft Office 2016, 2019, 2021</li>
+                <li>Windows 10 (All Editions)</li>
+                <li>Windows 11 (All Editions)</li>
+                <li>Aktivasi besifat sementara</li>
+                <li>Interface user-friendly</li>
+                <li>Batch script automation</li>
+            </ul>
+            
+        </div>
+    </div>
+
     <!-- Header -->
     <header id="header">
         <nav>
@@ -1070,8 +1208,6 @@
                         <div><span>Hardware</span></div>
                     </div>
                 </div>
-                
-                
             </div>
         </div>
     </section>
@@ -1103,7 +1239,6 @@
                         <a href="https://github.com/Xsany6/Projek-/tree/main/web1" target="_blank" class="btn-small">
                             <i class="fab fa-github"></i> Source Code
                         </a>
-                        
                     </div>
                 </div>
             </div>
@@ -1164,7 +1299,7 @@
                         <a href="https://idwebyik.my.id/key%20activator.rar" class="btn-small">
                             <i class="fas fa-download"></i> Download
                         </a>
-                        <a href="#" class="btn-small" style="opacity: 0.5; cursor: not-allowed;">
+                        <a href="#" class="btn-small" onclick="showActivationInfo(event)">
                             <i class="fas fa-info"></i> Info
                         </a>
                     </div>
@@ -1206,7 +1341,6 @@
                         <a href="slowhttptest.html" target="_blank" class="btn-small">
                             <i class="fas fa-book"></i> Docs
                         </a>
-                        
                     </div>
                 </div>
             </div>
@@ -1256,22 +1390,18 @@
                 </div>
             </div>
 
-            <form action="simpan-pesan.php" method="post" class="contact-form glass-card">
-                <h3 style="margin-bottom: 1.5rem; color: var(--text-primary);">Send me a message ✉️</h3>
-                <div class="form-group">
-                    <input type="text" name="nama" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <textarea name="pesan" rows="5" placeholder="Tell me about your project..." required></textarea>
-                </div>
-                <button type="submit" class="btn-modern" style="width: 100%;">
-                    <i class="fas fa-paper-plane"></i>
-                    Send Message
-                </button>
-            </form>
+            <div class="contact-form">
+  <iframe
+    class="map"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31641.87271970222!2d112.71362624443916!3d-7.458909139263177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7e449c4f1c93f%3A0x8cf1d1872195f2a1!2sSidoarjo%2C%20Kec.%20Sidoarjo%2C%20Kabupaten%20Sidoarjo%2C%20Jawa%20Timur!5e0!3m2!1sen!2sid!4v1699000000000!5m2!1sen!2sid"
+    width="100%"
+    height="450"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
         </div>
 
         <div class="social-links">
@@ -1310,6 +1440,23 @@
     </button>
 
     <script>
+    // Modal Functions
+    function showActivationInfo(event) {
+        event.preventDefault();
+        document.getElementById('infoModal').classList.add('active');
+    }
+
+    function closeModal() {
+        document.getElementById('infoModal').classList.remove('active');
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('infoModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+
     document.addEventListener("DOMContentLoaded", function() {
         // Loader
         const loader = document.getElementById('loader');
@@ -1496,7 +1643,6 @@
         const buttons = document.querySelectorAll('.btn-modern, .btn-secondary, .social-link');
         buttons.forEach(button => {
             button.addEventListener('mouseenter', () => {
-                // Add subtle animation
                 button.style.transform = 'scale(1.05)';
             });
             button.addEventListener('mouseleave', () => {
