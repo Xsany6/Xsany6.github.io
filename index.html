@@ -1066,6 +1066,36 @@
     transform: translateY(-3px);
     box-shadow: var(--shadow-primary);
   }
+  /* Team Group Button Styles */
+.team-group-section {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn-team-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-team-group:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    background: linear-gradient(135deg, #77509e 0%, #667eea 100%);
+}
+
+.btn-team-group i {
+    font-size: 1.2rem;
+}
 </style>
 
 <body>
@@ -1154,63 +1184,75 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="About" class="reveal">
-        <div class="section-header">
-            <div class="section-badge">About Me</div>
-            <h2 class="gradient-text">Who I Am</h2>
+   <!-- About Section -->
+<section id="About" class="reveal">
+    <div class="section-header">
+        <div class="section-badge">About Me</div>
+        <h2 class="gradient-text">Who I Am</h2>
+    </div>
+    <div class="about-container">
+        <div class="about-image">
+            <img src="./resource/1727331379309.jpg" alt="Rizkyan Dwi Fahrizah" loading="lazy">
         </div>
-        <div class="about-container">
-            <div class="about-image">
-                <img src="./resource/1727331379309.jpg" alt="Rizkyan Dwi Fahrizah" loading="lazy">
-            </div>
-            <div class="about-text">
-                <h3>Hello, I'm Rizkyan Dwi Fahrizah! 👨‍💻</h3>
-                <p>
-                    seorang siswa di SMK Negeri 2 Buduran dengan jurusan
-                    <a href="https://www.smkn2buduran.sch.id/jurusan-rekayasa-perangkat-lunak/" target="_blank">rekayasa-perangkat-lunak</a>.
-                    My journey in technology spans web development, server configuration, and hardware solutions.
-                </p>
-                <p>
-                    <span id="about-full">
-                        Saya memiliki gairah yang besar terhadap dunia teknologi, 
-                        khususnya dalam pengembangan web. Selain itu, saya juga tertarik untuk mendalami web server, 
-                        konfigurasi server, hingga perakitan dan perbaikan hardware. Saya senang belajar bagaimana sebuah sistem 
-                        bekerja dari hulu ke hilir dan selalu antusias mencari solusi teknis untuk berbagai tantangan IT.
-                    </span>
-                </p>
-                <button id="readMoreBtn" class="btn-modern" style="display: none; margin-top: 1rem;">
-                    <span id="btn-text">Read More</span>
-                </button>
-                <div class="skills-grid">
-                    <div class="skill-item">
-                        <i class="fab fa-html5"></i>
-                        <div><span>HTML5</span></div>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fab fa-css3-alt"></i>
-                        <div><span>CSS3</span></div>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fab fa-js-square"></i>
-                        <div><span>JavaScript</span></div>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fab fa-php"></i>
-                        <div><span>PHP</span></div>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fas fa-server"></i>
-                        <div><span>Server Config</span></div>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fas fa-tools"></i>
-                        <div><span>Hardware</span></div>
-                    </div>
+        <div class="about-text">
+            <h3>Hello, I'm Rizkyan Dwi Fahrizah! 👨‍💻</h3>
+            <p>
+                seorang siswa di SMK Negeri 2 Buduran dengan jurusan
+                <a href="https://www.smkn2buduran.sch.id/jurusan-rekayasa-perangkat-lunak/" target="_blank">rekayasa-perangkat-lunak</a>.
+                My journey in technology spans web development, server configuration, and hardware solutions.
+            </p>
+            <p>
+                <span id="about-full">
+                    Saya memiliki gairah yang besar terhadap dunia teknologi, 
+                    khususnya dalam pengembangan web. Selain itu, saya juga tertarik untuk mendalami web server, 
+                    konfigurasi server, hingga perakitan dan perbaikan hardware. Saya senang belajar bagaimana sebuah sistem 
+                    bekerja dari hulu ke hilir dan selalu antusias mencari solusi teknis untuk berbagai tantangan IT.
+                </span>
+            </p>
+            <button id="readMoreBtn" class="btn-modern" style="display: none; margin-top: 1rem;">
+                <span id="btn-text">Read More</span>
+            </button>
+            
+            <!-- Team Group Button -->
+            
+            
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <i class="fab fa-html5"></i>
+                    <div><span>HTML5</span></div>
                 </div>
+                <div class="skill-item">
+                    <i class="fab fa-css3-alt"></i>
+                    <div><span>CSS3</span></div>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-js-square"></i>
+                    <div><span>JavaScript</span></div>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-php"></i>
+                    <div><span>PHP</span></div>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-server"></i>
+                    <div><span>Server Config</span></div>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-tools"></i>
+                    <div><span>Hardware</span></div>
+                </div>
+                
+            </div>
+            <div class="team-group-section" style="margin-top: 1.5rem;">
+                <a href="" class="btn-team-group" id="teamGroupBtn">
+                    <i class="fas fa-users"></i>
+                    <span>Our Team</span>
+                </a>
             </div>
         </div>
-    </section>
+        
+    </div>
+</section>
 
     <!-- Projects Section -->
     <section id="Projeks" class="reveal">
@@ -1654,6 +1696,13 @@
         });
 
     });
+    // Team Group Button Handler
+    document.getElementById('teamGroupBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    // Ganti dengan link grup Anda
+    const teamGroupLink = 'https:itskikuk.my.id/team'; // atau Telegram/Discord
+    window.open(teamGroupLink, '_blank');
+});
     </script>
 </body>
 </html>
