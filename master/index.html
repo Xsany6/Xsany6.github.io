@@ -4,9 +4,225 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pusat Unduhan Software</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="https://idwebyik.my.id/favicon.jpeg" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #1e1e1e;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #ffffff;
+            padding: 40px;
+            text-align: center;
+            border-bottom: 2px solid #00d9ff;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .download-section {
+            padding: 40px;
+            border-bottom: 2px solid #2d2d2d;
+            background: #1e1e1e;
+        }
+
+        .download-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .download-section h2 {
+            color: #00d9ff;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            border-left: 5px solid #00d9ff;
+            padding-left: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #252525;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #00d9ff;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 1em;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #2d2d2d;
+            transition: background 0.3s ease;
+        }
+
+        tbody tr:hover {
+            background: #2d2d2d;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        td {
+            padding: 20px 15px;
+            color: #b0b0b0;
+        }
+
+        td[data-label="Software"],
+        td[data-label="Tool"],
+        td[data-label="OS"] {
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        td[data-label="Keterangan"] {
+            color: #999;
+            font-size: 0.95em;
+        }
+
+        .btn-download {
+            display: inline-block;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #00ff88 0%, #00cc66 100%);
+            color: #000;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 50, 50, 0.6);
+            background: linear-gradient(135deg, #ff3232 0%, #cc0000 100%);
+            color: #fff;
+        }
+
+        footer {
+            background: #1a1a1a;
+            padding: 40px;
+            border-top: 2px solid #2d2d2d;
+        }
+
+        .notes h3 {
+            color: #00d9ff;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .notes p {
+            margin-bottom: 12px;
+            color: #999;
+            line-height: 1.6;
+        }
+
+        .notes a {
+            color: #00d9ff;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .notes a:hover {
+            text-decoration: underline;
+            color: #00f0ff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            .download-section {
+                padding: 20px;
+            }
+
+            .download-section h2 {
+                font-size: 1.4em;
+            }
+
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr {
+                margin-bottom: 20px;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            td {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+            }
+
+            td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 15px;
+                font-weight: 700;
+                color: #00d9ff;
+                text-align: left;
+            }
+
+            .btn-download {
+                display: block;
+                text-align: center;
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -63,6 +279,41 @@
         </section>
 
         <section class="download-section">
+            <h2>💿 ISO Sistem Operasi</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama OS</th>
+                        <th>Keterangan</th>
+                        <th>Ukuran</th>
+                        <th>Tautan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="OS">Windows 10 21H2</td>
+                        <td data-label="Keterangan">ISO installer Windows 10 versi 21H2 (Build 19044).</td>
+                        <td data-label="Ukuran">4.5 GB</td>
+                        <td data-label="Tautan"><a href="https://drive.usercontent.google.com/download?id=1j9o1ahuuhGoySYJ7K8UsC7gYQvMpI8H4&export=download&authuser=0" class="btn-download primary">UNDUH</a></td>
+                    </tr>
+                    <tr>
+                        <td data-label="OS">Windows 11 25H2</td>
+                        <td data-label="Keterangan">ISO installer Windows 11 versi 25H2 terbaru.</td>
+                        <td data-label="Ukuran">5.2 GB</td>
+                        <td data-label="Tautan"><a href="https://drive.usercontent.google.com/download?id=1tUcVCrvVRv4V47nyW4EQ3QAu4rwjBnDs&export=download&authuser=0" class="btn-download primary">UNDUH</a></td>
+                    </tr>
+                    <tr>
+                        <td data-label="OS">Kali Linux 2025</td>
+                        <td data-label="Keterangan">Distribusi Linux untuk penetration testing dan security audit.</td>
+                        <td data-label="Ukuran">3.8 GB</td>
+                        <td data-label="Tautan"><a href="https://drive.usercontent.google.com/download?id=1hNICM6AiXYpwU-YwFubncjdSMEaIBddc&export=download&authuser=0" class="btn-download primary">UNDUH</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="download-section">
             <h2>🛠️ Tools & Utilitas Sistem</h2>
             
             <table>
@@ -112,7 +363,8 @@
         <footer>
             <div class="notes">
                 <h3>Catatan Penting dan Keamanan:</h3>
-                <p>⚠️ Tautan Google Drive (Office & Firefox) mungkin memerlukan login akun Google untuk menghindari batas unduhan.</p>
+                <p>⚠️ Tautan Google Drive (Office, Firefox, dan ISO OS) mungkin memerlukan login akun Google untuk menghindari batas unduhan.</p>
+                <p>💿 File ISO dapat di-burn ke DVD atau dibuat bootable USB menggunakan tool seperti Rufus atau Ventoy.</p>
                 <p>💡 File **.RAR** memerlukan **7-Zip** atau **WinRAR** untuk diekstrak. File **.EXE** dan **.MSI** adalah installer langsung.</p>
                 <p>Butuh bantuan? Kunjungi <a href="#">Halaman Bantuan</a> kami.</p>
             </div>
